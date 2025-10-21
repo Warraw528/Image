@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>50см Ярости</title>
+    <title>50CM ЯРОСТИ</title>
     <style>
         * {
             margin: 0;
@@ -20,6 +20,7 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            transition: all 0.5s ease;
         }
 
         .container {
@@ -39,6 +40,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            transition: all 0.5s ease;
         }
 
         .gallery-wrapper {
@@ -51,17 +53,18 @@
             width: 100%;
             overflow: hidden;
             position: relative;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.7);
             backdrop-filter: blur(20px);
             padding: 50px 0;
             border-radius: 25px;
             box-shadow: 0 25px 60px rgba(0,0,0,0.5);
             border: 2px solid rgba(255,255,255,0.1);
+            transition: all 0.5s ease;
         }
 
         .scroll-track {
             display: flex;
-            animation: scrollMobile 25s linear infinite;
+            animation: scrollMobile 60s linear infinite;
         }
 
         .scroll-item {
@@ -70,15 +73,15 @@
             height: 280px;
             margin: 0 25px;
             border-radius: 20px;
-            overflow: visible; /* Изменил на visible чтобы фото не обрезались */
+            overflow: visible;
             box-shadow: 0 20px 40px rgba(0,0,0,0.6);
             position: relative;
-            transition: all 0.4s ease;
+            transition: all 0.5s ease;
             border: 3px solid #ffd700;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: rgba(0,0,0,0.2); /* Фон для ячейки */
+            background: rgba(0,0,0,0.2);
         }
 
         .scroll-item:hover {
@@ -88,10 +91,10 @@
         }
 
         .scroll-item img {
-            width: 90%; /* Уменьшил масштаб фото */
-            height: 90%; /* Уменьшил масштаб фото */
-            object-fit: contain; /* Изменил на contain чтобы все фото было видно */
-            transition: transform 0.4s ease;
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
+            transition: all 0.5s ease;
             border-radius: 15px;
         }
 
@@ -99,12 +102,54 @@
             transform: scale(1.1);
         }
 
+        /* Стили когда фото-фон активен */
+        body.photo-background {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('image/sticker7.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        body.photo-background .scroll-item {
+            opacity: 0.3;
+            background: rgba(0,0,0,0.05);
+            border-color: rgba(255,215,0,0.3);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        body.photo-background .scroll-item:hover {
+            opacity: 0.7;
+            transform: scale(1.04) rotate(1deg);
+            border-color: rgba(255,107,107,0.5);
+            box-shadow: 0 15px 30px rgba(255,0,0,0.2);
+        }
+
+        body.photo-background .scroll-item img {
+            opacity: 0.6;
+        }
+
+        body.photo-background .scroll-item:hover img {
+            opacity: 0.9;
+            transform: scale(1.06);
+        }
+
+        body.photo-background .mobile-scroller {
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        body.photo-background h1 {
+            opacity: 0.8;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+        }
+
+        /* Плавная бесконечная анимация */
         @keyframes scrollMobile {
             0% {
                 transform: translateX(0);
             }
             100% {
-                transform: translateX(-50%);
+                transform: translateX(calc(-400px * 6 - 25px * 12));
             }
         }
 
@@ -117,7 +162,7 @@
             margin-top: 30px;
             font-size: 1.2rem;
             text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.7);
             padding: 15px 30px;
             border-radius: 25px;
             border: 1px solid rgba(255,255,255,0.2);
@@ -125,6 +170,13 @@
             flex-direction: column;
             gap: 8px;
             align-items: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.5s ease;
+        }
+
+        body.photo-background .info {
+            background: rgba(0,0,0,0.4);
+            opacity: 0.8;
         }
 
         .info-line {
@@ -137,6 +189,20 @@
             color: #ffd700;
             font-weight: bold;
             font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 5px 15px;
+            border-radius: 10px;
+            background: rgba(255,215,0,0.1);
+        }
+
+        .rage-indicator:hover {
+            background: rgba(255,215,0,0.3);
+            transform: scale(1.05);
+        }
+
+        .rage-indicator:active {
+            transform: scale(0.95);
         }
 
         /* Адаптивность */
@@ -172,6 +238,19 @@
                 font-size: 1.1rem;
                 padding: 12px 25px;
             }
+
+            .rage-indicator {
+                font-size: 1.1rem;
+            }
+
+            @keyframes scrollMobile {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(calc(-320px * 6 - 20px * 12));
+                }
+            }
         }
 
         @media (max-width: 480px) {
@@ -202,7 +281,17 @@
             }
             
             .rage-indicator {
-                font-size: 1.1rem;
+                font-size: 1rem;
+                padding: 4px 12px;
+            }
+
+            @keyframes scrollMobile {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(calc(-280px * 6 - 15px * 12));
+                }
             }
         }
 
@@ -240,11 +329,40 @@
         .icon {
             font-size: 1.4rem;
         }
+
+        /* Анимация смены фона */
+        @keyframes backgroundChange {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+
+        .background-change {
+            animation: backgroundChange 0.8s ease;
+        }
+
+        /* Оверлей для лучшей читаемости текста */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: -1;
+            pointer-events: none;
+            transition: all 0.5s ease;
+        }
+
+        body.photo-background .overlay {
+            background: rgba(0,0,0,0.2);
+        }
     </style>
 </head>
 <body>
+    <div class="overlay"></div>
     <div class="container">
-        <h1>50см Ярости</h1>
+        <h1>50CM ЯРОСТИ</h1>
         
         <div class="gallery-wrapper">
             <div class="mobile-scroller">
@@ -292,23 +410,64 @@
             </div>
         </div>
         
-        <div class="info">
+        <div class="info">         
             <div class="info-line">
-                <span class="icon">▼</span>
-                <span>Наведи для паузы</span>
-                <span class="icon">□</span>
+                <span>Слышь, чорт</span>
             </div>
             <div class="info-line">
-                <span class="icon">▼</span>
-                <span>Листай на телефоне</span>
-                <span class="icon">↓</span>
-            </div>
-            <div class="info-line">
-                <span class="icon">↓</span>
-                <span class="rage-indicator">УРОВЕНЬ ЯРОСТИ: МАКСИМУМ</span>
-                <span class="icon">↓</span>
+                <span class="icon">!</span>
+                <span class="rage-indicator" id="rageButton">УРОВЕНЬ ЯРОСТИ: ГРАДИЕНТ</span>
+                <span class="icon">!</span>
             </div>
         </div>
     </div>
+
+    <script>
+        const rageButton = document.getElementById('rageButton');
+        const body = document.body;
+        
+        let isPhotoBackground = false;
+        
+        rageButton.addEventListener('click', function() {
+            // Переключаем между градиентом и фото
+            if (isPhotoBackground) {
+                // Возвращаем градиент
+                body.classList.remove('photo-background');
+                body.style.background = 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)';
+                rageButton.textContent = 'УРОВЕНЬ ЯРОСТИ: ГРАДИЕНТ';
+            } else {
+                // Устанавливаем sticker7.jpg как фон
+                body.classList.add('photo-background');
+                rageButton.textContent = 'УРОВЕНЬ ЯРОСТИ: ФОТО';
+            }
+            
+            // Меняем состояние
+            isPhotoBackground = !isPhotoBackground;
+            
+            // Добавляем анимацию смены
+            body.classList.add('background-change');
+            setTimeout(() => {
+                body.classList.remove('background-change');
+            }, 800);
+            
+            // Эффект при клике
+            rageButton.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                rageButton.style.transform = 'scale(1)';
+            }, 150);
+        });
+        
+        // Добавляем hover эффект для кнопки
+        rageButton.addEventListener('mouseenter', function() {
+            this.style.background = 'rgba(255,215,0,0.3)';
+        });
+        
+        rageButton.addEventListener('mouseleave', function() {
+            this.style.background = 'rgba(255,215,0,0.1)';
+        });
+
+        // Инициализация - устанавливаем градиент явно
+        body.style.background = 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)';
+    </script>
 </body>
 </html>
