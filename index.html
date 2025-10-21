@@ -104,7 +104,7 @@
 
         /* Стили когда фото-фон активен */
         body.photo-background {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('./image/sticker7.jpg');
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('image/sticker7.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -369,42 +369,42 @@
                 <div class="scroll-track">
                     <!-- Первый набор стикеров -->
                     <div class="scroll-item">
-                        <img src="./image/sticker.jpg" alt="Стикер 1" loading="lazy">
+                        <img src="image/sticker.jpg" alt="Стикер 1" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="./image/sticker2.jpg" alt="Стикер 2" loading="lazy">
+                        <img src="image/sticker2.jpg" alt="Стикер 2" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="./image/sticker3.jpg" alt="Стикер 3" loading="lazy">
+                        <img src="image/sticker3.jpg" alt="Стикер 3" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="./image/sticker4.jpg" alt="Стикер 4" loading="lazy">
+                        <img src="image/sticker4.jpg" alt="Стикер 4" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="./image/sticker5.jpg" alt="Стикер 5" loading="lazy">
+                        <img src="image/sticker5.jpg" alt="Стикер 5" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="./image/sticker6.jpg" alt="Стикер 6" loading="lazy">
+                        <img src="image/sticker6.jpg" alt="Стикер 6" loading="lazy">
                     </div>
                     
                     <!-- Дублированный набор для бесконечности -->
                     <div class="scroll-item">
-                        <img src="./image/sticker.jpg" alt="Стикер 1" loading="lazy">
+                        <img src="image/sticker.jpg" alt="Стикер 1" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="./image/sticker2.jpg" alt="Стикер 2" loading="lazy">
+                        <img src="image/sticker2.jpg" alt="Стикер 2" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="./image/sticker3.jpg" alt="Стикер 3" loading="lazy">
+                        <img src="image/sticker3.jpg" alt="Стикер 3" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="./image/sticker4.jpg" alt="Стикер 4" loading="lazy">
+                        <img src="image/sticker4.jpg" alt="Стикер 4" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="./image/sticker5.jpg" alt="Стикер 5" loading="lazy">
+                        <img src="image/sticker5.jpg" alt="Стикер 5" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="./image/sticker6.jpg" alt="Стикер 6" loading="lazy">
+                        <img src="image/sticker6.jpg" alt="Стикер 6" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -427,11 +427,6 @@
         const body = document.body;
         
         let isPhotoBackground = false;
-        
-        // Убедимся что при загрузке установлен градиент
-        document.addEventListener('DOMContentLoaded', function() {
-            body.style.background = 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)';
-        });
         
         rageButton.addEventListener('click', function() {
             // Переключаем между градиентом и фото
@@ -470,6 +465,9 @@
         rageButton.addEventListener('mouseleave', function() {
             this.style.background = 'rgba(255,215,0,0.1)';
         });
+
+        // Инициализация - устанавливаем градиент явно
+        body.style.background = 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)';
     </script>
 </body>
 </html>
