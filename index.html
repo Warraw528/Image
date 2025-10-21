@@ -20,6 +20,10 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            transition: background 0.5s ease;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .container {
@@ -51,7 +55,7 @@
             width: 100%;
             overflow: hidden;
             position: relative;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.7);
             backdrop-filter: blur(20px);
             padding: 50px 0;
             border-radius: 25px;
@@ -105,7 +109,7 @@
                 transform: translateX(0);
             }
             100% {
-                transform: translateX(calc(-400px * 6 - 25px * 12)); /* Сдвигаем на ширину 6 фото + отступы */
+                transform: translateX(calc(-400px * 6 - 25px * 12));
             }
         }
 
@@ -118,7 +122,7 @@
             margin-top: 30px;
             font-size: 1.2rem;
             text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.7);
             padding: 15px 30px;
             border-radius: 25px;
             border: 1px solid rgba(255,255,255,0.2);
@@ -126,6 +130,7 @@
             flex-direction: column;
             gap: 8px;
             align-items: center;
+            backdrop-filter: blur(10px);
         }
 
         .info-line {
@@ -138,6 +143,20 @@
             color: #ffd700;
             font-weight: bold;
             font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 5px 15px;
+            border-radius: 10px;
+            background: rgba(255,215,0,0.1);
+        }
+
+        .rage-indicator:hover {
+            background: rgba(255,215,0,0.3);
+            transform: scale(1.05);
+        }
+
+        .rage-indicator:active {
+            transform: scale(0.95);
         }
 
         /* Адаптивность */
@@ -172,6 +191,10 @@
             .info {
                 font-size: 1.1rem;
                 padding: 12px 25px;
+            }
+
+            .rage-indicator {
+                font-size: 1.1rem;
             }
 
             @keyframes scrollMobile {
@@ -212,7 +235,8 @@
             }
             
             .rage-indicator {
-                font-size: 1.1rem;
+                font-size: 1rem;
+                padding: 4px 12px;
             }
 
             @keyframes scrollMobile {
@@ -259,9 +283,41 @@
         .icon {
             font-size: 1.4rem;
         }
+
+        /* Анимация смены фона */
+        @keyframes backgroundChange {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+
+        .background-change {
+            animation: backgroundChange 0.8s ease;
+        }
+
+        /* Оверлей для лучшей читаемости текста */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Стиль когда фото как фон */
+        .photo-background {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('image/sticker7.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
     </style>
 </head>
 <body>
+    <div class="overlay"></div>
     <div class="container">
         <h1>50см Ярости</h1>
         
@@ -314,10 +370,63 @@
         <div class="info">         
             <div class="info-line">
                 <span class="icon">↓</span>
-                <span class="rage-indicator">УРОВЕНЬ ЯРОСТИ: КРЫСА</span>
+                <span class="rage-indicator" id="rageButton">УРОВЕНЬ ЯРОСТИ: ГРАДИЕНТ</span>
                 <span class="icon">↓</span>
             </div>
         </div>
     </div>
+
+    <script>
+        const rageButton = document.getElementById('rageButton');
+        const body = document.body;
+        
+        let isPhotoBackground = false;
+        
+        rageButton.addEventListener('click', function() {
+            // Переключаем между градиентом и фото
+            if (isPhotoBackground) {
+                // Возвращаем градиент
+                body.style.background = 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)';
+                body.style.backgroundImage = 'none';
+                body.classList.remove('photo-background');
+                rageButton.textContent = 'УРОВЕНЬ ЯРОСТИ: ГРАДИЕНТ';
+            } else {
+                // Устанавливаем sticker7.jpg как фон
+                body.style.background = `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('image/sticker7.jpg')`;
+                body.style.backgroundSize = 'cover';
+                body.style.backgroundPosition = 'center';
+                body.style.backgroundRepeat = 'no-repeat';
+                body.classList.add('photo-background');
+                rageButton.textContent = 'УРОВЕНЬ ЯРОСТИ: ФОТО';
+            }
+            
+            // Меняем состояние
+            isPhotoBackground = !isPhotoBackground;
+            
+            // Добавляем анимацию смены
+            body.classList.add('background-change');
+            setTimeout(() => {
+                body.classList.remove('background-change');
+            }, 800);
+            
+            // Эффект при клике
+            rageButton.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                rageButton.style.transform = 'scale(1)';
+            }, 150);
+        });
+        
+        // Добавляем hover эффект для кнопки
+        rageButton.addEventListener('mouseenter', function() {
+            this.style.background = 'rgba(255,215,0,0.3)';
+        });
+        
+        rageButton.addEventListener('mouseleave', function() {
+            this.style.background = 'rgba(255,215,0,0.1)';
+        });
+
+        // Инициализация - показываем градиент по умолчанию
+        body.style.background = 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)';
+    </script>
 </body>
 </html>
