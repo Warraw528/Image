@@ -24,7 +24,7 @@
 
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             text-align: center;
         }
 
@@ -53,7 +53,7 @@
             position: relative;
             background: rgba(0,0,0,0.3);
             backdrop-filter: blur(20px);
-            padding: 40px 0;
+            padding: 50px 0;
             border-radius: 25px;
             box-shadow: 0 25px 60px rgba(0,0,0,0.5);
             border: 2px solid rgba(255,255,255,0.1);
@@ -66,10 +66,10 @@
 
         .scroll-item {
             flex: 0 0 auto;
-            width: 320px;
-            height: 220px;
-            margin: 0 20px;
-            border-radius: 15px;
+            width: 400px; /* Увеличил ширину */
+            height: 280px; /* Увеличил высоту */
+            margin: 0 25px; /* Увеличил отступы между фото */
+            border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0,0,0,0.6);
             position: relative;
@@ -116,6 +116,16 @@
             padding: 15px 30px;
             border-radius: 25px;
             border: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .info-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .rage-indicator {
@@ -139,13 +149,13 @@
             }
             
             .scroll-item {
-                width: 280px;
-                height: 190px;
-                margin: 0 15px;
+                width: 320px; /* Больше для мобильных */
+                height: 220px;
+                margin: 0 20px;
             }
             
             .mobile-scroller {
-                padding: 30px 0;
+                padding: 40px 0;
             }
             
             .info {
@@ -161,9 +171,9 @@
             }
             
             .scroll-item {
-                width: 240px;
-                height: 160px;
-                margin: 0 10px;
+                width: 280px; /* Еще больше для маленьких экранов */
+                height: 190px;
+                margin: 0 15px;
                 border-width: 2px;
             }
             
@@ -208,6 +218,11 @@
 
         h1 {
             animation: pulse 3s ease-in-out infinite;
+        }
+
+        /* Символы для индикаторов */
+        .icon {
+            font-size: 1.4rem;
         }
     </style>
 </head>
@@ -262,8 +277,21 @@
         </div>
         
         <div class="info">
-            🖱️ Наведи для паузы • 📱 Листай на телефоне • 
-            <span class="rage-indicator">⚡ УРОВЕНЬ ЯРОСТИ: МАКСИМУМ ⚡</span>
+            <div class="info-line">
+                <span class="icon">▼</span>
+                <span>Наведи для паузы</span>
+                <span class="icon">□</span>
+            </div>
+            <div class="info-line">
+                <span class="icon">▼</span>
+                <span>Листай на телефоне</span>
+                <span class="icon">↓</span>
+            </div>
+            <div class="info-line">
+                <span class="icon">↓</span>
+                <span class="rage-indicator">УРОВЕНЬ ЯРОСТИ: МАКСИМУМ</span>
+                <span class="icon">↓</span>
+            </div>
         </div>
     </div>
 </body>
