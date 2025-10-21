@@ -102,7 +102,7 @@
             transform: scale(1.1);
         }
 
-        /* Стили когда фото-фон активен - СДЕЛАЛ ЕЩЕ ПРОЗРАЧНЕЕ */
+        /* Стили когда фото-фон активен */
         body.photo-background {
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('image/sticker7.jpg');
             background-size: cover;
@@ -111,35 +111,35 @@
         }
 
         body.photo-background .scroll-item {
-            opacity: 0.3; /* Было 0.6 - стало еще прозрачнее */
-            background: rgba(0,0,0,0.05); /* Еще более прозрачный фон */
-            border-color: rgba(255,215,0,0.3); /* Более прозрачная граница */
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3); /* Более легкая тень */
+            opacity: 0.3;
+            background: rgba(0,0,0,0.05);
+            border-color: rgba(255,215,0,0.3);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
         body.photo-background .scroll-item:hover {
-            opacity: 0.7; /* Было 0.9 - при наведении тоже прозрачнее */
-            transform: scale(1.04) rotate(1deg); /* Более скромная анимация */
-            border-color: rgba(255,107,107,0.5); /* Прозрачнее при наведении */
-            box-shadow: 0 15px 30px rgba(255,0,0,0.2); /* Легче тень */
+            opacity: 0.7;
+            transform: scale(1.04) rotate(1deg);
+            border-color: rgba(255,107,107,0.5);
+            box-shadow: 0 15px 30px rgba(255,0,0,0.2);
         }
 
         body.photo-background .scroll-item img {
-            opacity: 0.6; /* Было 0.8 - фото внутри тоже прозрачнее */
+            opacity: 0.6;
         }
 
         body.photo-background .scroll-item:hover img {
-            opacity: 0.9; /* Было 1 - при наведении не полностью непрозрачно */
-            transform: scale(1.06); /* Более скромное увеличение */
+            opacity: 0.9;
+            transform: scale(1.06);
         }
 
         body.photo-background .mobile-scroller {
-            background: rgba(0,0,0,0.3); /* Было 0.5 - контейнер прозрачнее */
-            backdrop-filter: blur(5px); /* Меньше размытия */
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(5px);
         }
 
         body.photo-background h1 {
-            opacity: 0.8; /* Заголовок тоже немного прозрачнее */
+            opacity: 0.8;
             text-shadow: 0 2px 8px rgba(0,0,0,0.7);
         }
 
@@ -175,7 +175,7 @@
         }
 
         body.photo-background .info {
-            background: rgba(0,0,0,0.4); /* Было 0.5 - инфо блок прозрачнее */
+            background: rgba(0,0,0,0.4);
             opacity: 0.8;
         }
 
@@ -355,12 +355,28 @@
         }
 
         body.photo-background .overlay {
-            background: rgba(0,0,0,0.2); /* Было 0.3 - оверлей прозрачнее */
+            background: rgba(0,0,0,0.2);
+        }
+
+        /* Сообщение об ошибке */
+        .error-message {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255,0,0,0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            z-index: 1000;
         }
     </style>
 </head>
 <body>
     <div class="overlay"></div>
+    <div class="error-message" id="errorMessage">Файл sticker7.jpg не найден!</div>
+    
     <div class="container">
         <h1>50CM ЯРОСТИ</h1>
         
@@ -425,12 +441,30 @@
     <script>
         const rageButton = document.getElementById('rageButton');
         const body = document.body;
+        const errorMessage = document.getElementById('errorMessage');
         
         let isPhotoBackground = false;
         
-        // Убедимся что при загрузке установлен градиент
+        // Проверяем доступность файла sticker7.jpg
+        function checkSticker7() {
+            const img = new Image();
+            img.onload = function() {
+                console.log('sticker7.jpg доступен');
+            };
+            img.onerror = function() {
+                console.error('sticker7.jpg не найден');
+                errorMessage.style.display = 'block';
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+            };
+            img.src = 'image/sticker7.jpg';
+        }
+        
+        // Проверяем при загрузке
         document.addEventListener('DOMContentLoaded', function() {
             body.style.background = 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)';
+            checkSticker7();
         });
         
         rageButton.addEventListener('click', function() {
@@ -444,6 +478,9 @@
                 // Устанавливаем sticker7.jpg как фон
                 body.classList.add('photo-background');
                 rageButton.textContent = 'УРОВЕНЬ ЯРОСТИ: ФОТО';
+                
+                // Проверяем доступность файла
+                checkSticker7();
             }
             
             // Меняем состояние
