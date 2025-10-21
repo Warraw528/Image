@@ -66,15 +66,19 @@
 
         .scroll-item {
             flex: 0 0 auto;
-            width: 400px; /* Увеличил ширину */
-            height: 280px; /* Увеличил высоту */
-            margin: 0 25px; /* Увеличил отступы между фото */
+            width: 400px;
+            height: 280px;
+            margin: 0 25px;
             border-radius: 20px;
-            overflow: hidden;
+            overflow: visible; /* Изменил на visible чтобы фото не обрезались */
             box-shadow: 0 20px 40px rgba(0,0,0,0.6);
             position: relative;
             transition: all 0.4s ease;
             border: 3px solid #ffd700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0,0,0,0.2); /* Фон для ячейки */
         }
 
         .scroll-item:hover {
@@ -84,14 +88,15 @@
         }
 
         .scroll-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            width: 90%; /* Уменьшил масштаб фото */
+            height: 90%; /* Уменьшил масштаб фото */
+            object-fit: contain; /* Изменил на contain чтобы все фото было видно */
             transition: transform 0.4s ease;
+            border-radius: 15px;
         }
 
         .scroll-item:hover img {
-            transform: scale(1.15);
+            transform: scale(1.1);
         }
 
         @keyframes scrollMobile {
@@ -149,9 +154,14 @@
             }
             
             .scroll-item {
-                width: 320px; /* Больше для мобильных */
+                width: 320px;
                 height: 220px;
                 margin: 0 20px;
+            }
+            
+            .scroll-item img {
+                width: 85%;
+                height: 85%;
             }
             
             .mobile-scroller {
@@ -171,10 +181,15 @@
             }
             
             .scroll-item {
-                width: 280px; /* Еще больше для маленьких экранов */
+                width: 280px;
                 height: 190px;
                 margin: 0 15px;
                 border-width: 2px;
+            }
+            
+            .scroll-item img {
+                width: 80%;
+                height: 80%;
             }
             
             .gallery-wrapper {
@@ -203,6 +218,7 @@
             z-index: 1;
             opacity: 0;
             transition: opacity 0.4s ease;
+            border-radius: 17px;
         }
 
         .scroll-item:hover::before {
@@ -238,19 +254,19 @@
                         <img src="image/sticker.jpg" alt="Стикер 1" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker1.jpg" alt="Стикер 2" loading="lazy">
+                        <img src="image/sticker2.jpg" alt="Стикер 2" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker2.jpg" alt="Стикер 3" loading="lazy">
+                        <img src="image/sticker3.jpg" alt="Стикер 3" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker3.jpg" alt="Стикер 4" loading="lazy">
+                        <img src="image/sticker4.jpg" alt="Стикер 4" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker4.jpg" alt="Стикер 5" loading="lazy">
+                        <img src="image/sticker5.jpg" alt="Стикер 5" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker5.jpg" alt="Стикер 6" loading="lazy">
+                        <img src="image/sticker6.jpg" alt="Стикер 6" loading="lazy">
                     </div>
                     
                     <!-- Дублированный набор для бесконечности -->
@@ -258,19 +274,19 @@
                         <img src="image/sticker.jpg" alt="Стикер 1" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker1.jpg" alt="Стикер 2" loading="lazy">
+                        <img src="image/sticker2.jpg" alt="Стикер 2" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker2.jpg" alt="Стикер 3" loading="lazy">
+                        <img src="image/sticker3.jpg" alt="Стикер 3" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker3.jpg" alt="Стикер 4" loading="lazy">
+                        <img src="image/sticker4.jpg" alt="Стикер 4" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker4.jpg" alt="Стикер 5" loading="lazy">
+                        <img src="image/sticker5.jpg" alt="Стикер 5" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker5.jpg" alt="Стикер 6" loading="lazy">
+                        <img src="image/sticker6.jpg" alt="Стикер 6" loading="lazy">
                     </div>
                 </div>
             </div>
