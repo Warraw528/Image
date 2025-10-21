@@ -111,35 +111,33 @@
         }
 
         body.photo-background .scroll-item {
-            opacity: 0.3;
-            background: rgba(0,0,0,0.05);
-            border-color: rgba(255,215,0,0.3);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            opacity: 0.2;
+            background: rgba(0,0,0,0.1);
+            border-color: rgba(255,215,0,0.5);
         }
 
         body.photo-background .scroll-item:hover {
-            opacity: 0.7;
-            transform: scale(1.04) rotate(1deg);
-            border-color: rgba(255,107,107,0.5);
-            box-shadow: 0 15px 30px rgba(255,0,0,0.2);
+            opacity: 0.9;
+            transform: scale(1.05) rotate(1deg);
+            border-color: rgba(255,107,107,0.7);
         }
 
         body.photo-background .scroll-item img {
-            opacity: 0.6;
+            opacity: 0.4;
         }
 
         body.photo-background .scroll-item:hover img {
-            opacity: 0.9;
-            transform: scale(1.06);
+            opacity: 1;
+            transform: scale(1.08);
         }
 
         body.photo-background .mobile-scroller {
-            background: rgba(0,0,0,0.3);
-            backdrop-filter: blur(5px);
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
         }
 
         body.photo-background h1 {
-            opacity: 0.8;
+            opacity: 0.9;
             text-shadow: 0 2px 8px rgba(0,0,0,0.7);
         }
 
@@ -175,8 +173,8 @@
         }
 
         body.photo-background .info {
-            background: rgba(0,0,0,0.4);
-            opacity: 0.8;
+            background: rgba(0,0,0,0.5);
+            opacity: 0.9;
         }
 
         .info-line {
@@ -355,7 +353,7 @@
         }
 
         body.photo-background .overlay {
-            background: rgba(0,0,0,0.2);
+            background: rgba(0,0,0,0.3);
         }
     </style>
 </head>
@@ -431,12 +429,16 @@
         rageButton.addEventListener('click', function() {
             // Переключаем между градиентом и фото
             if (isPhotoBackground) {
-                // Возвращаем градиент
+                // Возвращаем градиент - полностью сбрасываем стили
                 body.classList.remove('photo-background');
                 body.style.background = 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)';
+                body.style.backgroundImage = '';
+                body.style.backgroundSize = '';
+                body.style.backgroundPosition = '';
+                body.style.backgroundRepeat = '';
                 rageButton.textContent = 'УРОВЕНЬ ЯРОСТИ: ГРАДИЕНТ';
             } else {
-                // Устанавливаем sticker7.jpg как фон
+                // Устанавливаем sticker7.jpg как фон через CSS класс
                 body.classList.add('photo-background');
                 rageButton.textContent = 'УРОВЕНЬ ЯРОСТИ: ФОТО';
             }
@@ -465,9 +467,6 @@
         rageButton.addEventListener('mouseleave', function() {
             this.style.background = 'rgba(255,215,0,0.1)';
         });
-
-        // Инициализация - устанавливаем градиент явно
-        body.style.background = 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)';
     </script>
 </body>
 </html>
