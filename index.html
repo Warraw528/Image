@@ -422,7 +422,7 @@
         rageButton.addEventListener('click', function() {
             // Переключаем между градиентом и фото
             if (isPhotoBackground) {
-                // Возвращаем градиент
+                // Возвращаем градиент - ВАЖНО: устанавливаем оба свойства
                 body.style.background = 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)';
                 body.style.backgroundImage = 'none';
                 body.classList.remove('photo-background');
@@ -462,8 +462,9 @@
             this.style.background = 'rgba(255,215,0,0.1)';
         });
 
-        // Инициализация - показываем градиент по умолчанию
+        // Инициализация - устанавливаем градиент явно
         body.style.background = 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)';
+        body.style.backgroundImage = 'none';
     </script>
 </body>
 </html>
