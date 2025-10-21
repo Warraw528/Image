@@ -104,7 +104,7 @@
 
         /* Стили когда фото-фон активен */
         body.photo-background {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('image/sticker7.jpg');
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('./image/sticker7.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -357,26 +357,10 @@
         body.photo-background .overlay {
             background: rgba(0,0,0,0.2);
         }
-
-        /* Сообщение об ошибке */
-        .error-message {
-            display: none;
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255,0,0,0.8);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 10px;
-            z-index: 1000;
-        }
     </style>
 </head>
 <body>
     <div class="overlay"></div>
-    <div class="error-message" id="errorMessage">Файл sticker7.jpg не найден!</div>
-    
     <div class="container">
         <h1>50CM ЯРОСТИ</h1>
         
@@ -385,42 +369,42 @@
                 <div class="scroll-track">
                     <!-- Первый набор стикеров -->
                     <div class="scroll-item">
-                        <img src="image/sticker.jpg" alt="Стикер 1" loading="lazy">
+                        <img src="./image/sticker.jpg" alt="Стикер 1" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker2.jpg" alt="Стикер 2" loading="lazy">
+                        <img src="./image/sticker2.jpg" alt="Стикер 2" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker3.jpg" alt="Стикер 3" loading="lazy">
+                        <img src="./image/sticker3.jpg" alt="Стикер 3" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker4.jpg" alt="Стикер 4" loading="lazy">
+                        <img src="./image/sticker4.jpg" alt="Стикер 4" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker5.jpg" alt="Стикер 5" loading="lazy">
+                        <img src="./image/sticker5.jpg" alt="Стикер 5" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker6.jpg" alt="Стикер 6" loading="lazy">
+                        <img src="./image/sticker6.jpg" alt="Стикер 6" loading="lazy">
                     </div>
                     
                     <!-- Дублированный набор для бесконечности -->
                     <div class="scroll-item">
-                        <img src="image/sticker.jpg" alt="Стикер 1" loading="lazy">
+                        <img src="./image/sticker.jpg" alt="Стикер 1" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker2.jpg" alt="Стикер 2" loading="lazy">
+                        <img src="./image/sticker2.jpg" alt="Стикер 2" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker3.jpg" alt="Стикер 3" loading="lazy">
+                        <img src="./image/sticker3.jpg" alt="Стикер 3" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker4.jpg" alt="Стикер 4" loading="lazy">
+                        <img src="./image/sticker4.jpg" alt="Стикер 4" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker5.jpg" alt="Стикер 5" loading="lazy">
+                        <img src="./image/sticker5.jpg" alt="Стикер 5" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker6.jpg" alt="Стикер 6" loading="lazy">
+                        <img src="./image/sticker6.jpg" alt="Стикер 6" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -441,30 +425,12 @@
     <script>
         const rageButton = document.getElementById('rageButton');
         const body = document.body;
-        const errorMessage = document.getElementById('errorMessage');
         
         let isPhotoBackground = false;
         
-        // Проверяем доступность файла sticker7.jpg
-        function checkSticker7() {
-            const img = new Image();
-            img.onload = function() {
-                console.log('sticker7.jpg доступен');
-            };
-            img.onerror = function() {
-                console.error('sticker7.jpg не найден');
-                errorMessage.style.display = 'block';
-                setTimeout(() => {
-                    errorMessage.style.display = 'none';
-                }, 3000);
-            };
-            img.src = 'image/sticker7.jpg';
-        }
-        
-        // Проверяем при загрузке
+        // Убедимся что при загрузке установлен градиент
         document.addEventListener('DOMContentLoaded', function() {
             body.style.background = 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)';
-            checkSticker7();
         });
         
         rageButton.addEventListener('click', function() {
@@ -478,9 +444,6 @@
                 // Устанавливаем sticker7.jpg как фон
                 body.classList.add('photo-background');
                 rageButton.textContent = 'УРОВЕНЬ ЯРОСТИ: ФОТО';
-                
-                // Проверяем доступность файла
-                checkSticker7();
             }
             
             // Меняем состояние
