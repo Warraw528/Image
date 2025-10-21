@@ -12,73 +12,87 @@
         }
 
         body {
-            font-family: system-ui, -apple-system, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial Black', 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Центрируем по вертикали */
-            align-items: center; /* Центрируем по горизонтали */
+            justify-content: center;
+            align-items: center;
             padding: 20px;
         }
 
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             text-align: center;
         }
 
         h1 {
-            color: white;
+            color: #fff;
             margin-bottom: 40px;
-            font-size: 2.5rem;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            font-size: 3.5rem;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .gallery-wrapper {
             position: relative;
             width: 100%;
-            margin: 50px 0; /* Отступ сверху и снизу */
+            margin: 50px 0;
         }
 
         .mobile-scroller {
             width: 100%;
             overflow: hidden;
             position: relative;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(15px);
-            padding: 40px 0; /* Увеличиваем отступы */
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(20px);
+            padding: 50px 0;
             border-radius: 25px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+            border: 2px solid rgba(255,255,255,0.1);
         }
 
         .scroll-track {
             display: flex;
-            animation: scrollMobile 35s linear infinite;
+            animation: scrollMobile 25s linear infinite;
         }
 
         .scroll-item {
             flex: 0 0 auto;
-            width: 300px;
-            height: 200px;
-            margin: 0 20px;
+            width: 400px;
+            height: 280px;
+            margin: 0 25px;
             border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            overflow: visible; /* Изменил на visible чтобы фото не обрезались */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
             position: relative;
-            transition: transform 0.3s ease;
+            transition: all 0.4s ease;
+            border: 3px solid #ffd700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0,0,0,0.2); /* Фон для ячейки */
         }
 
         .scroll-item:hover {
-            transform: scale(1.05);
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 0 25px 50px rgba(255,0,0,0.4);
+            border-color: #ff6b6b;
         }
 
         .scroll-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
+            width: 90%; /* Уменьшил масштаб фото */
+            height: 90%; /* Уменьшил масштаб фото */
+            object-fit: contain; /* Изменил на contain чтобы все фото было видно */
+            transition: transform 0.4s ease;
+            border-radius: 15px;
         }
 
         .scroll-item:hover img {
@@ -94,115 +108,207 @@
             }
         }
 
-        /* Пауза при наведении */
         .scroll-track:hover {
             animation-play-state: paused;
         }
 
-        /* Индикатор */
         .info {
-            color: white;
+            color: #fff;
             margin-top: 30px;
-            opacity: 0.9;
-            font-size: 1.1rem;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            font-size: 1.2rem;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.3);
+            padding: 15px 30px;
+            border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .info-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rage-indicator {
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 1.3rem;
         }
 
         /* Адаптивность */
         @media (max-width: 768px) {
             body {
                 padding: 15px;
-                justify-content: flex-start; /* Для мобильных меняем центрирование */
-                padding-top: 50px;
+                justify-content: flex-start;
+                padding-top: 40px;
             }
             
             h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
                 margin-bottom: 30px;
+                letter-spacing: 2px;
             }
             
             .scroll-item {
-                width: 250px;
-                height: 170px;
-                margin: 0 15px;
+                width: 320px;
+                height: 220px;
+                margin: 0 20px;
+            }
+            
+            .scroll-item img {
+                width: 85%;
+                height: 85%;
             }
             
             .mobile-scroller {
-                padding: 30px 0;
+                padding: 40px 0;
+            }
+            
+            .info {
+                font-size: 1.1rem;
+                padding: 12px 25px;
             }
         }
 
         @media (max-width: 480px) {
             h1 {
-                font-size: 1.7rem;
+                font-size: 2rem;
+                letter-spacing: 1px;
             }
             
             .scroll-item {
-                width: 220px;
-                height: 150px;
-                margin: 0 12px;
+                width: 280px;
+                height: 190px;
+                margin: 0 15px;
+                border-width: 2px;
+            }
+            
+            .scroll-item img {
+                width: 80%;
+                height: 80%;
             }
             
             .gallery-wrapper {
                 margin: 30px 0;
             }
+            
+            .info {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+            
+            .rage-indicator {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Дополнительные эффекты */
+        .scroll-item::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255,0,0,0.1));
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: 17px;
+        }
+
+        .scroll-item:hover::before {
+            opacity: 1;
+        }
+
+        /* Пульсирующая анимация для заголовка */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        h1 {
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        /* Символы для индикаторов */
+        .icon {
+            font-size: 1.4rem;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Моя фотогалерея</h1>
+        <h1>50см Ярости</h1>
         
         <div class="gallery-wrapper">
             <div class="mobile-scroller">
                 <div class="scroll-track">
-                    <!-- ЗАМЕНИТЕ ЭТИ ПУТИ НА СВОИ ФОТОГРАФИИ -->
-                    <!-- Рекомендуемый размер фото: 600x400px или пропорционально -->
-                    
-                    <!-- Первый набор ваших фото -->
+                    <!-- Первый набор стикеров -->
                     <div class="scroll-item">
-                        <img src="image/sticker.jpg" alt="Мое фото 1" loading="lazy">
+                        <img src="image/sticker.jpg" alt="Стикер 1" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker1.jpg" alt="Мое фото 2" loading="lazy">
+                        <img src="image/sticker2.jpg" alt="Стикер 2" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker2.jpg" alt="Мое фото 3" loading="lazy">
+                        <img src="image/sticker3.jpg" alt="Стикер 3" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker3.jpg" alt="Мое фото 4" loading="lazy">
+                        <img src="image/sticker4.jpg" alt="Стикер 4" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker4.jpg" alt="Мое фото 5" loading="lazy">
+                        <img src="image/sticker5.jpg" alt="Стикер 5" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker5.jpg" alt="Мое фото 6" loading="lazy">
+                        <img src="image/sticker6.jpg" alt="Стикер 6" loading="lazy">
                     </div>
                     
                     <!-- Дублированный набор для бесконечности -->
                     <div class="scroll-item">
-                        <img src="image/sticker.jpg" alt="Мое фото 1" loading="lazy">
+                        <img src="image/sticker.jpg" alt="Стикер 1" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker1.jpg" alt="Мое фото 2" loading="lazy">
+                        <img src="image/sticker2.jpg" alt="Стикер 2" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker2.jpg" alt="Мое фото 3" loading="lazy">
+                        <img src="image/sticker3.jpg" alt="Стикер 3" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker3.jpg" alt="Мое фото 4" loading="lazy">
+                        <img src="image/sticker4.jpg" alt="Стикер 4" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker4.jpg" alt="Мое фото 5" loading="lazy">
+                        <img src="image/sticker5.jpg" alt="Стикер 5" loading="lazy">
                     </div>
                     <div class="scroll-item">
-                        <img src="image/sticker5.jpg" alt="Мое фото 6" loading="lazy">
+                        <img src="image/sticker6.jpg" alt="Стикер 6" loading="lazy">
                     </div>
                 </div>
             </div>
         </div>
         
-        <div class="info">🖱️ Наведите курсор для паузы • 📱 Листайте на телефоне</div>
+        <div class="info">
+            <div class="info-line">
+                <span class="icon">▼</span>
+                <span>Наведи для паузы</span>
+                <span class="icon">□</span>
+            </div>
+            <div class="info-line">
+                <span class="icon">▼</span>
+                <span>Листай на телефоне</span>
+                <span class="icon">↓</span>
+            </div>
+            <div class="info-line">
+                <span class="icon">↓</span>
+                <span class="rage-indicator">УРОВЕНЬ ЯРОСТИ: МАКСИМУМ</span>
+                <span class="icon">↓</span>
+            </div>
+        </div>
     </div>
 </body>
 </html>
