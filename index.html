@@ -104,10 +104,10 @@
 
         /* Стили когда фото-фон активен */
         body.photo-background {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('image/sticker7.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('image/sticker7.jpg') !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
         }
 
         body.photo-background .scroll-item {
@@ -426,19 +426,20 @@
         
         let isPhotoBackground = false;
         
+        // Убедимся что при загрузке установлен градиент
+        document.addEventListener('DOMContentLoaded', function() {
+            body.style.background = 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)';
+        });
+        
         rageButton.addEventListener('click', function() {
             // Переключаем между градиентом и фото
             if (isPhotoBackground) {
-                // Возвращаем градиент - полностью сбрасываем стили
+                // Возвращаем градиент
                 body.classList.remove('photo-background');
                 body.style.background = 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)';
-                body.style.backgroundImage = '';
-                body.style.backgroundSize = '';
-                body.style.backgroundPosition = '';
-                body.style.backgroundRepeat = '';
                 rageButton.textContent = 'УРОВЕНЬ ЯРОСТИ: ГРАДИЕНТ';
             } else {
-                // Устанавливаем sticker7.jpg как фон через CSS класс
+                // Устанавливаем sticker7.jpg как фон
                 body.classList.add('photo-background');
                 rageButton.textContent = 'УРОВЕНЬ ЯРОСТИ: ФОТО';
             }
