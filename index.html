@@ -20,7 +20,7 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
-            transition: background 0.5s ease;
+            transition: all 0.5s ease;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -43,6 +43,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            transition: all 0.5s ease;
         }
 
         .gallery-wrapper {
@@ -61,6 +62,7 @@
             border-radius: 25px;
             box-shadow: 0 25px 60px rgba(0,0,0,0.5);
             border: 2px solid rgba(255,255,255,0.1);
+            transition: all 0.5s ease;
         }
 
         .scroll-track {
@@ -77,7 +79,7 @@
             overflow: visible;
             box-shadow: 0 20px 40px rgba(0,0,0,0.6);
             position: relative;
-            transition: all 0.4s ease;
+            transition: all 0.5s ease;
             border: 3px solid #ffd700;
             display: flex;
             justify-content: center;
@@ -95,12 +97,44 @@
             width: 90%;
             height: 90%;
             object-fit: contain;
-            transition: transform 0.4s ease;
+            transition: all 0.5s ease;
             border-radius: 15px;
         }
 
         .scroll-item:hover img {
             transform: scale(1.1);
+        }
+
+        /* Стили когда фото-фон активен */
+        body.photo-background .scroll-item {
+            opacity: 0.6;
+            background: rgba(0,0,0,0.1);
+            border-color: rgba(255,215,0,0.5);
+        }
+
+        body.photo-background .scroll-item:hover {
+            opacity: 0.9;
+            transform: scale(1.05) rotate(1deg);
+            border-color: rgba(255,107,107,0.7);
+        }
+
+        body.photo-background .scroll-item img {
+            opacity: 0.8;
+        }
+
+        body.photo-background .scroll-item:hover img {
+            opacity: 1;
+            transform: scale(1.08);
+        }
+
+        body.photo-background .mobile-scroller {
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        body.photo-background h1 {
+            opacity: 0.9;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.7);
         }
 
         /* Плавная бесконечная анимация */
@@ -131,6 +165,12 @@
             gap: 8px;
             align-items: center;
             backdrop-filter: blur(10px);
+            transition: all 0.5s ease;
+        }
+
+        body.photo-background .info {
+            background: rgba(0,0,0,0.5);
+            opacity: 0.9;
         }
 
         .info-line {
@@ -305,14 +345,11 @@
             background: rgba(0,0,0,0.4);
             z-index: -1;
             pointer-events: none;
+            transition: all 0.5s ease;
         }
 
-        /* Стиль когда фото как фон */
-        .photo-background {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('image/sticker7.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+        body.photo-background .overlay {
+            background: rgba(0,0,0,0.3);
         }
     </style>
 </head>
