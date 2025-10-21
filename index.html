@@ -61,7 +61,7 @@
 
         .scroll-track {
             display: flex;
-            animation: scrollMobile 25s linear infinite;
+            animation: scrollMobile 60s linear infinite;
         }
 
         .scroll-item {
@@ -70,7 +70,7 @@
             height: 280px;
             margin: 0 25px;
             border-radius: 20px;
-            overflow: visible; /* Изменил на visible чтобы фото не обрезались */
+            overflow: visible;
             box-shadow: 0 20px 40px rgba(0,0,0,0.6);
             position: relative;
             transition: all 0.4s ease;
@@ -78,7 +78,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: rgba(0,0,0,0.2); /* Фон для ячейки */
+            background: rgba(0,0,0,0.2);
         }
 
         .scroll-item:hover {
@@ -88,10 +88,10 @@
         }
 
         .scroll-item img {
-            width: 90%; /* Уменьшил масштаб фото */
-            height: 90%; /* Уменьшил масштаб фото */
-            object-fit: contain; /* Изменил на contain чтобы все фото было видно */
-            transition: transform 0.1s ease;
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
+            transition: transform 0.4s ease;
             border-radius: 15px;
         }
 
@@ -99,12 +99,13 @@
             transform: scale(1.1);
         }
 
+        /* Плавная бесконечная анимация */
         @keyframes scrollMobile {
             0% {
                 transform: translateX(0);
             }
             100% {
-                transform: translateX(-50%);
+                transform: translateX(calc(-400px * 6 - 25px * 12)); /* Сдвигаем на ширину 6 фото + отступы */
             }
         }
 
@@ -172,6 +173,15 @@
                 font-size: 1.1rem;
                 padding: 12px 25px;
             }
+
+            @keyframes scrollMobile {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(calc(-320px * 6 - 20px * 12));
+                }
+            }
         }
 
         @media (max-width: 480px) {
@@ -203,6 +213,15 @@
             
             .rage-indicator {
                 font-size: 1.1rem;
+            }
+
+            @keyframes scrollMobile {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(calc(-280px * 6 - 15px * 12));
+                }
             }
         }
 
