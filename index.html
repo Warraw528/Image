@@ -183,7 +183,7 @@
             gap: 10px;
         }
 
-        .rage-indicator {
+        .secret-button {
             color: #ffd700;
             font-weight: bold;
             font-size: 1.3rem;
@@ -194,12 +194,12 @@
             background: rgba(255,215,0,0.1);
         }
 
-        .rage-indicator:hover {
+        .secret-button:hover {
             background: rgba(255,215,0,0.3);
             transform: scale(1.05);
         }
 
-        .rage-indicator:active {
+        .secret-button:active {
             transform: scale(0.95);
         }
 
@@ -237,7 +237,7 @@
                 padding: 12px 25px;
             }
 
-            .rage-indicator {
+            .secret-button {
                 font-size: 1.1rem;
             }
 
@@ -278,7 +278,7 @@
                 padding: 10px 20px;
             }
             
-            .rage-indicator {
+            .secret-button {
                 font-size: 1rem;
                 padding: 4px 12px;
             }
@@ -414,19 +414,19 @@
             </div>
             <div class="info-line">
                 <span class="icon">!</span>
-                <span class="rage-indicator" id="rageButton">УРОВЕНЬ ЯРОСТИ: ГРАДИЕНТ</span>
+                <span class="secret-button" id="secretButton">СЕКРЕТИК</span>
                 <span class="icon">!</span>
             </div>
         </div>
     </div>
 
     <script>
-        const rageButton = document.getElementById('rageButton');
+        const secretButton = document.getElementById('secretButton');
         const body = document.body;
         
         let isPhotoBackground = false;
         
-        rageButton.addEventListener('click', function() {
+        secretButton.addEventListener('click', function() {
             // Переключаем между градиентом и фото
             if (isPhotoBackground) {
                 // Возвращаем градиент - полностью сбрасываем стили
@@ -436,11 +436,11 @@
                 body.style.backgroundSize = '';
                 body.style.backgroundPosition = '';
                 body.style.backgroundRepeat = '';
-                rageButton.textContent = 'УРОВЕНЬ ЯРОСТИ: ГРАДИЕНТ';
+                secretButton.textContent = 'СЕКРЕТИК';
             } else {
                 // Устанавливаем sticker7.jpg как фон через CSS класс
                 body.classList.add('photo-background');
-                rageButton.textContent = 'УРОВЕНЬ ЯРОСТИ: ФОТО';
+                secretButton.textContent = 'СЕКРЕТИК АКТИВЕН';
             }
             
             // Меняем состояние
@@ -453,18 +453,18 @@
             }, 800);
             
             // Эффект при клике
-            rageButton.style.transform = 'scale(0.95)';
+            secretButton.style.transform = 'scale(0.95)';
             setTimeout(() => {
-                rageButton.style.transform = 'scale(1)';
+                secretButton.style.transform = 'scale(1)';
             }, 150);
         });
         
         // Добавляем hover эффект для кнопки
-        rageButton.addEventListener('mouseenter', function() {
+        secretButton.addEventListener('mouseenter', function() {
             this.style.background = 'rgba(255,215,0,0.3)';
         });
         
-        rageButton.addEventListener('mouseleave', function() {
+        secretButton.addEventListener('mouseleave', function() {
             this.style.background = 'rgba(255,215,0,0.1)';
         });
     </script>
