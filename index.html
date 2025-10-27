@@ -511,7 +511,7 @@
 <body>
     <div class="overlay"></div>
     <div class="container">
-        <h1>50CM ЯРОСТИ</h1>
+        <h1 id="mainTitle">50CM ЯРОСТИ</h1>
         
         <div class="gallery-wrapper">
             <div class="mobile-scroller">
@@ -612,11 +612,13 @@
         const sashaButton = document.getElementById('sashaButton');
         const sashaIndicator = document.getElementById('sashaIndicator');
         const sashaMusic = document.getElementById('sashaMusic');
+        const mainTitle = document.getElementById('mainTitle');
         const body = document.body;
         
         let isPhotoBackground = false;
         let isMusicPlaying = false;
         let isSashaMusicPlaying = false;
+        let isTitleChanged = false;
         
         // Функции для модальных окон
         function openModal(modalId) {
@@ -639,10 +641,11 @@
                 isSashaMusicPlaying = false;
                 sashaIndicator.textContent = '';
             } else {
+                // Устанавливаем громкость 60%
                 sashaMusic.volume = 0.6;
                 sashaMusic.play().then(() => {
                     isSashaMusicPlaying = true;
-                    sashaIndicator.textContent = 'Саше не хватает... СЧАСТЬЯ!';
+                    sashaIndicator.textContent = 'Саше не хватает... слушайте!';
                 }).catch(error => {
                     console.log('Ошибка воспроизведения:', error);
                     sashaIndicator.textContent = 'Нажмите еще раз для звука';
@@ -682,6 +685,15 @@
                     console.log('Автовоспроизведение заблокировано:', error);
                     musicIndicator.textContent = '';
                 });
+            }
+            
+            // Меняем заголовок при каждом нажатии
+            if (isTitleChanged) {
+                mainTitle.textContent = '50CM ЯРОСТИ';
+                isTitleChanged = false;
+            } else {
+                mainTitle.textContent = 'С Днюхой тебя, мы все тебя любим';
+                isTitleChanged = true;
             }
             
             // Старая логика смены фона (без изменений)
@@ -744,7 +756,7 @@
         // Обработчик для музыки Саши
         sashaMusic.addEventListener('play', function() {
             isSashaMusicPlaying = true;
-            sashaIndicator.textContent = 'Саше не хватает... СЧАСТЬЯ!';
+            sashaIndicator.textContent = 'Саше не хватает... слушайте!';
         });
         
         sashaMusic.addEventListener('pause', function() {
