@@ -639,6 +639,7 @@
                 isSashaMusicPlaying = false;
                 sashaIndicator.textContent = '';
             } else {
+                sashaMusic.volume = 0.7;
                 sashaMusic.play().then(() => {
                     isSashaMusicPlaying = true;
                     sashaIndicator.textContent = 'Саше не хватает... СЧАСТЬЯ!';
