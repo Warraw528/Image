@@ -674,7 +674,6 @@
                 musicIndicator.textContent = '';
                 musicIndicator.classList.remove('music-playing');
             } else {
-                backgroundMusic.volume = 1.3;
                 backgroundMusic.play().then(() => {
                     isMusicPlaying = true;
                     musicIndicator.textContent = '';
