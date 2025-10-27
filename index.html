@@ -599,8 +599,8 @@
     </audio>
 
     <audio id="sashaMusic">
-        <source src="music/sasha.mp3" type="audio/mp3">
-        <source src="music/sasha.ogg" type="audio/ogg">
+        <source src="music/Guts.mp3" type="audio/mp3">
+        <source src="music/Guts.ogg" type="audio/ogg">
         Ваш браузер не поддерживает аудио элементы.
     </audio>
 
@@ -641,7 +641,7 @@
             } else {
                 sashaMusic.play().then(() => {
                     isSashaMusicPlaying = true;
-                    sashaIndicator.textContent = 'Саше не хватает... слушайте!';
+                    sashaIndicator.textContent = 'Саше не хватает... СЧАСТЬЯ!';
                 }).catch(error => {
                     console.log('Ошибка воспроизведения:', error);
                     sashaIndicator.textContent = 'Нажмите еще раз для звука';
@@ -743,7 +743,7 @@
         // Обработчик для музыки Саши
         sashaMusic.addEventListener('play', function() {
             isSashaMusicPlaying = true;
-            sashaIndicator.textContent = 'Саше не хватает... слушайте!';
+            sashaIndicator.textContent = 'Саше не хватает... СЧАСТЬЯ!';
         });
         
         sashaMusic.addEventListener('pause', function() {
