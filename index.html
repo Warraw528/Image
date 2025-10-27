@@ -203,6 +203,14 @@
             transform: scale(0.95);
         }
 
+        /* Стиль для индикатора музыки */
+        .music-indicator {
+            color: #ff6b6b;
+            font-size: 1rem;
+            margin-top: 5px;
+            opacity: 0.8;
+        }
+
         /* Адаптивность */
         @media (max-width: 768px) {
             body {
@@ -355,6 +363,18 @@
         body.photo-background .overlay {
             background: rgba(0,0,0,0.3);
         }
+
+        /* Анимация для индикатора музыки */
+        @keyframes musicPulse {
+            0% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0.6; transform: scale(1); }
+        }
+
+        .music-playing {
+            animation: musicPulse 1.5s ease-in-out infinite;
+            color: #ffd700 !important;
+        }
     </style>
 </head>
 <body>
@@ -417,19 +437,46 @@
                 <span class="secret-button" id="secretButton">СЕКРЕТИК</span>
                 <span class="icon">!</span>
             </div>
+            <div class="music-indicator" id="musicIndicator">♪ музыка выключена</div>
         </div>
     </div>
 
+    <!-- Аудио элемент -->
+    <audio id="backgroundMusic" loop>
+        <source src="music/happy.mp3" type="audio/mp3">
+        <source src="music/happy.ogg" type="audio/ogg">
+        Ваш браузер не поддерживает аудио элементы.
+    </audio>
+
     <script>
         const secretButton = document.getElementById('secretButton');
+        const musicIndicator = document.getElementById('musicIndicator');
+        const backgroundMusic = document.getElementById('backgroundMusic');
         const body = document.body;
         
         let isPhotoBackground = false;
+        let isMusicPlaying = false;
         
         secretButton.addEventListener('click', function() {
-            // Переключаем между градиентом и фото
+            // Включаем/выключаем музыку при каждом нажатии
+            if (isMusicPlaying) {
+                backgroundMusic.pause();
+                isMusicPlaying = false;
+                musicIndicator.textContent = '';
+                musicIndicator.classList.remove('music-playing');
+            } else {
+                backgroundMusic.play().then(() => {
+                    isMusicPlaying = true;
+                    musicIndicator.textContent = '';
+                    musicIndicator.classList.add('music-playing');
+                }).catch(error => {
+                    console.log('Автовоспроизведение заблокировано:', error);
+                    musicIndicator.textContent = '';
+                });
+            }
+            
+            // Старая логика смены фона (без изменений)
             if (isPhotoBackground) {
-                // Возвращаем градиент - полностью сбрасываем стили
                 body.classList.remove('photo-background');
                 body.style.background = 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)';
                 body.style.backgroundImage = '';
@@ -438,12 +485,10 @@
                 body.style.backgroundRepeat = '';
                 secretButton.textContent = 'СЕКРЕТИК';
             } else {
-                // Устанавливаем sticker7.jpg как фон через CSS класс
                 body.classList.add('photo-background');
                 secretButton.textContent = 'СЕКРЕТИК';
             }
             
-            // Меняем состояние
             isPhotoBackground = !isPhotoBackground;
             
             // Добавляем анимацию смены
@@ -466,6 +511,25 @@
         
         secretButton.addEventListener('mouseleave', function() {
             this.style.background = 'rgba(255,215,0,0.1)';
+        });
+        
+        // Обработчик изменения состояния музыки
+        backgroundMusic.addEventListener('play', function() {
+            isMusicPlaying = true;
+            musicIndicator.textContent = 'СЧАСТЬЕ';
+            musicIndicator.classList.add('music-playing');
+        });
+        
+        backgroundMusic.addEventListener('pause', function() {
+            isMusicPlaying = false;
+            musicIndicator.textContent = '';
+            musicIndicator.classList.remove('music-playing');
+        });
+        
+        backgroundMusic.addEventListener('ended', function() {
+            isMusicPlaying = false;
+            musicIndicator.textContent = '';
+            musicIndicator.classList.remove('music-playing');
         });
     </script>
 </body>
